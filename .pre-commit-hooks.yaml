@@ -1,7 +1,7 @@
 id: pre-plantuml
 name: PlantUML Diagram Generation Pre-Commit
 description: Generates SVGs of PlantUML diagrams found in path specified in arguments.
-entry: preplantuml.go
+entry: main.go
 language: go
 types: [text]
 files: .+\.(pu)
