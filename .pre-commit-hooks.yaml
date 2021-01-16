@@ -3,4 +3,4 @@
   description: Generates SVGs of PlantUML diagrams found in path specified in arguments.
   entry: pre-plantuml
   language: golang
-  files: .+\.(pu)
+  type: [text]
