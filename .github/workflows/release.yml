@@ -20,6 +20,6 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Fixed pre-commit-hooks.yaml
+            Fixed language to golang.
           draft: false
           prerelease: false
