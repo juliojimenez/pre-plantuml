@@ -20,8 +20,6 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+            Fixed pre-commit-hooks.yaml
           draft: false
           prerelease: false
