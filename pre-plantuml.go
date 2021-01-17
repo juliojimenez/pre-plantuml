@@ -70,22 +70,21 @@ func replaceLineInFile(filePath string, searchString string, replaceString strin
 	if err != nil {
 		log.Fatalln(err)
 	}
+	fmt.Println("Updated image tags in ", filePath)
 }
 
 func main() {
-	diagramFiles := findFiles(".*\\.(pu)")
+	diagramFiles := findFiles(".*\\.(pu|puml|plantuml|iuml|wsd)")
 	for _, diagramFile := range diagramFiles {
 		diagramContent := readFileContentBytes(diagramFile)
+		fmt.Println("Hex Encoding Diagram for: ", diagramFile)
 		url := hexEncodedURL(diagramContent)
-		fmt.Println(url)
 		markdownFiles := findFiles(".*\\.md")
 		for _, markdownFile := range markdownFiles {
+			fmt.Println("Working on ", markdownFile)
 			searchImageStub := fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile)
-			fmt.Println("Search Image Stub: ", searchImageStub)
 			replaceImageStub := fmt.Sprintf("![%s](%s)", diagramFile, url)
-			fmt.Println("Replace Image Stub: ", replaceImageStub)
 			replaceLineInFile(markdownFile, searchImageStub, replaceImageStub)
 		}
 	}
-
 }
