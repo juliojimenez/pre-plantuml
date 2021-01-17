@@ -19,7 +19,7 @@ func findFiles(re string) []string {
 	var files []string
 	e = filepath.Walk(".", func(filePath string, info os.FileInfo, err error) error {
 		if err == nil && libRegEx.MatchString(info.Name()) {
-			files = append(files, path.Join(filePath, info.Name()))
+			files = append(files, filePath)
 		}
 		return nil
 	})
