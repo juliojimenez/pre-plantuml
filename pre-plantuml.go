@@ -5,7 +5,6 @@ import (
 	"os"
 	"io/ioutil"
 	"log"
-	"path"
 	"path/filepath"
 	"regexp"
 	"encoding/hex"
@@ -48,7 +47,7 @@ func readFileContentBytes(filePath string) []byte {
 	return content
 }
 
-func hexEncodedUrl(content []byte) string {
+func hexEncodedURL(content []byte) string {
 	encodedStr := hex.EncodeToString(content)
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/~h%s", encodedStr)
 }
@@ -69,6 +68,15 @@ func replaceLineInFile(filePath string, content string, searchString string, rep
 }
 
 func main() {
-	
-	fmt.Println(findFiles(".*\\.(pu)"))
+	diagramFiles := findFiles(".*\\.(pu)")
+	for _, diagramFile := range diagramFiles {
+		diagramContent := readFileContentBytes(diagramFile)
+		url := hexEncodedURL(diagramContent)
+		markdownFiles := findFiles(".*\\.md")
+		for _, markdownFile := range markdownFiles {
+			markdownFileContent := readFileContentString(markdownFile)
+			replaceLineInFile(diagramFile, markdownFileContent, fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile), fmt.Sprintf("![%s](%s)", diagramFile, url))
+		}
+	}
+
 }
