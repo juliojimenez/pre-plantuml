@@ -52,12 +52,17 @@ func hexEncodedURL(content []byte) string {
 }
 
 func replaceLineInFile(filePath string, searchString string, replaceString string) {
+	libRegEx, e := regexp.Compile(searchString)
+	if e != nil {
+		log.Fatal(e)
+	}
 	content := readFileContentString(filePath)
 	lines := strings.Split(content, "\n")
 
 	for i, line := range lines {
-		if strings.Contains(line, searchString) {
-				lines[i] = replaceString
+		if libRegEx.MatchString(line) {
+			libRegEx.ReplaceAllString(line, replaceString)
+			lines[i] = replaceString
 		}
 	}
 	output := strings.Join(lines, "\n")
