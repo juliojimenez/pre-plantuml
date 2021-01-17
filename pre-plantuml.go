@@ -5,6 +5,7 @@ import (
 	"os"
 	"io/ioutil"
 	"log"
+	"path"
 	"path/filepath"
 	"regexp"
 )
@@ -16,9 +17,9 @@ func findFiles(re string) []string {
 	}
 	
 	var files []string
-	e = filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+	e = filepath.Walk(".", func(filePath string, info os.FileInfo, err error) error {
 		if err == nil && libRegEx.MatchString(info.Name()) {
-			files = append(files, info.Name())
+			files = append(files, path.Join(filePath, info.Name()))
 		}
 		return nil
 	})
