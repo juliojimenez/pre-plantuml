@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"io/ioutil"
+	"log"
 )
 
 func main() {
@@ -10,4 +12,10 @@ func main() {
 	for _, file := range args {
 		fmt.Println(file)
 	}
+	content, err := ioutil.ReadFile("README.md")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("File contents: %s", content)
 }
