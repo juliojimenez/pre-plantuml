@@ -31,16 +31,15 @@ func findFiles(re string) []string {
 }
 
 func readFileContentString(filePath string) string {
-	content, err := ioutil.ReadFile("README.md")
+	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}	
-	fmt.Println("File contents: ", string(content))
 	return string(content)
 }
 
 func readFileContentBytes(filePath string) []byte {
-	content, err := ioutil.ReadFile("README.md")
+	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}	
@@ -73,9 +72,14 @@ func main() {
 	for _, diagramFile := range diagramFiles {
 		diagramContent := readFileContentBytes(diagramFile)
 		url := hexEncodedURL(diagramContent)
+		fmt.Println(url)
 		markdownFiles := findFiles(".*\\.md")
 		for _, markdownFile := range markdownFiles {
-			replaceLineInFile(markdownFile, fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile), fmt.Sprintf("![%s](%s)", diagramFile, url))
+			searchImageStub := fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile)
+			fmt.Println("Search Image Stub: ", searchImageStub)
+			replaceImageStub := fmt.Sprintf("![%s](%s)", diagramFile, url)
+			fmt.Println("Replace Image Stub: ", replaceImageStub)
+			replaceLineInFile(markdownFile, searchImageStub, replaceImageStub)
 		}
 	}
 
