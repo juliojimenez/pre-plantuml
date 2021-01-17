@@ -52,7 +52,8 @@ func hexEncodedURL(content []byte) string {
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/~h%s", encodedStr)
 }
 
-func replaceLineInFile(filePath string, content string, searchString string, replaceString string) {
+func replaceLineInFile(filePath string, searchString string, replaceString string) {
+	content := readFileContentString(filePath)
 	lines := strings.Split(content, "\n")
 
 	for i, line := range lines {
@@ -74,8 +75,7 @@ func main() {
 		url := hexEncodedURL(diagramContent)
 		markdownFiles := findFiles(".*\\.md")
 		for _, markdownFile := range markdownFiles {
-			markdownFileContent := readFileContentString(markdownFile)
-			replaceLineInFile(diagramFile, markdownFileContent, fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile), fmt.Sprintf("![%s](%s)", diagramFile, url))
+			replaceLineInFile(markdownFile, fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile), fmt.Sprintf("![%s](%s)", diagramFile, url))
 		}
 	}
 
