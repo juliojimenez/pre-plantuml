@@ -16,6 +16,5 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	fmt.Printf("File contents: %s", content)
+	fmt.Println("File contents: ", content)
 }
