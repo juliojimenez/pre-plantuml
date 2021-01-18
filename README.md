@@ -13,7 +13,7 @@ At the root of your repo, create `.pre-commit-config.yaml` and add the following
 ```yaml
 repos:
 - repo: https://github.com/juliojimenez/pre-plantuml
-  rev: v0.0.25
+  rev: v0.0.26
   hooks:
   - id: pre-plantuml
 ```
