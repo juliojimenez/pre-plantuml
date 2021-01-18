@@ -56,7 +56,7 @@ Below is the image tag that pre-plantuml will update on pre-commit!
 Next!
 ```
 
-The **alt** text of the image becomes the path to the diagram source. pre-plantuml takes care of finding diagram source files, markdown files, and image tags to update.
+You just insert the path to the diagram source in the **alt** text (the part in brackets) of the image. pre-plantuml takes care of finding diagram source files, markdown files, and image source to update (the part in parentheses).
 
 ## Supported Files
 
