@@ -20,6 +20,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             This release has the following changes:
-            - Tests workflow.
+            - Interface out the filesystem for test mocks.
+            - Minor fixes.
           draft: false
           prerelease: false

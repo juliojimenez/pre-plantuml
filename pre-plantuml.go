@@ -5,7 +5,6 @@ import (
 	"os"
 	"io/ioutil"
 	"log"
-	"path/filepath"
 	"regexp"
 	"encoding/hex"
 	"strings"

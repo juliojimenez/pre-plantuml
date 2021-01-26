@@ -11,6 +11,7 @@ var fs fileSystem = osFS{}
 type fileSystem interface {
 	Open(name string) (file, error)
 	Stat(name string) (os.FileInfo, error)
+	Walk(root string, walkFn filepath.WalkFunc) error
 }
 
 type file interface {
