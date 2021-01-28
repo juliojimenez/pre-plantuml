@@ -20,7 +20,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             This release has the following changes:
-            - Interface out the filesystem for test mocks.
-            - Minor fixes.
+            - findFiles Test.
+            - go Modules.
           draft: false
           prerelease: false
