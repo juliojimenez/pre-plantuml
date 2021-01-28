@@ -1,21 +1,21 @@
 package main
 
 import (
+	"encoding/hex"
 	"fmt"
-	"os"
 	"io/ioutil"
 	"log"
+	"os"
 	"regexp"
-	"encoding/hex"
 	"strings"
 )
 
-func findFiles(re string) []string {
+func findFiles(fs fileSystem, re string) ([]string, error) {
 	libRegEx, e := regexp.Compile(re)
 	if e != nil {
-		log.Fatal(e)
+		return nil, e
 	}
-	
+
 	var files []string
 	e = fs.Walk(".", func(filePath string, info os.FileInfo, err error) error {
 		if err == nil && libRegEx.MatchString(info.Name()) {
@@ -24,16 +24,16 @@ func findFiles(re string) []string {
 		return nil
 	})
 	if e != nil {
-		log.Fatal(e)
+		return nil, e
 	}
-	return files
+	return files, nil
 }
 
 func readFileContentString(filePath string) string {
 	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
-	}	
+	}
 	return string(content)
 }
 
@@ -41,7 +41,7 @@ func readFileContentBytes(filePath string) []byte {
 	content, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
-	}	
+	}
 	return content
 }
 
@@ -73,12 +73,19 @@ func replaceLineInFile(filePath string, searchString string, replaceString strin
 }
 
 func main() {
-	diagramFiles := findFiles(".*\\.(pu|puml|plantuml|iuml|wsd)")
+	var fs fileSystem = osFS{}
+	diagramFiles, e := findFiles(fs, ".*\\.(pu|puml|plantuml|iuml|wsd)")
+	if e != nil {
+		log.Fatal(e)
+	}
 	for _, diagramFile := range diagramFiles {
 		diagramContent := readFileContentBytes(diagramFile)
 		fmt.Println("Hex Encoding Diagram for: ", diagramFile)
 		url := hexEncodedURL(diagramContent)
-		markdownFiles := findFiles(".*\\.md")
+		markdownFiles, e := findFiles(fs, ".*\\.md")
+		if e != nil {
+			log.Fatal(e)
+		}
 		for _, markdownFile := range markdownFiles {
 			fmt.Println("Working on ", markdownFile)
 			searchImageStub := fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile)
