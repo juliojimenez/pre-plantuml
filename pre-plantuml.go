@@ -29,8 +29,8 @@ func findFiles(fs fileSystem, re string) ([]string, error) {
 	return files, nil
 }
 
-func readFileContentString(filePath string) string {
-	content, err := ioutil.ReadFile(filePath)
+func readFileContentString(fs fileSystem, filePath string) string {
+	content, err := fs.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,12 +50,12 @@ func hexEncodedURL(content []byte) string {
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/~h%s", encodedStr)
 }
 
-func replaceLineInFile(filePath string, searchString string, replaceString string) {
+func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) {
 	libRegEx, e := regexp.Compile(searchString)
 	if e != nil {
 		log.Fatal(e)
 	}
-	content := readFileContentString(filePath)
+	content := readFileContentString(fs, filePath)
 	lines := strings.Split(content, "\n")
 
 	for i, line := range lines {
@@ -90,7 +90,7 @@ func main() {
 			fmt.Println("Working on ", markdownFile)
 			searchImageStub := fmt.Sprintf("\\!\\[%s\\]\\(.*\\)", diagramFile)
 			replaceImageStub := fmt.Sprintf("![%s](%s)", diagramFile, url)
-			replaceLineInFile(markdownFile, searchImageStub, replaceImageStub)
+			replaceLineInFile(fs, markdownFile, searchImageStub, replaceImageStub)
 		}
 	}
 }
