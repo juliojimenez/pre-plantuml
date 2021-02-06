@@ -37,8 +37,8 @@ func readFileContentString(fs fileSystem, filePath string) string {
 	return string(content)
 }
 
-func readFileContentBytes(filePath string) []byte {
-	content, err := ioutil.ReadFile(filePath)
+func readFileContentBytes(fs fileSystem, filePath string) []byte {
+	content, err := fs.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,7 +79,7 @@ func main() {
 		log.Fatal(e)
 	}
 	for _, diagramFile := range diagramFiles {
-		diagramContent := readFileContentBytes(diagramFile)
+		diagramContent := readFileContentBytes(fs, diagramFile)
 		fmt.Println("Hex Encoding Diagram for: ", diagramFile)
 		url := hexEncodedURL(diagramContent)
 		markdownFiles, e := findFiles(fs, ".*\\.md")

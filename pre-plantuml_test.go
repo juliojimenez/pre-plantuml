@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"testing"
 )
 
@@ -17,6 +18,14 @@ func TestReadFileContentString(t *testing.T) {
 	var mockFS fileSystem = mockFS{}
 	result := readFileContentString(mockFS, "example.pu")
 	if result != "Test String" {
+		t.Fatal()
+	}
+}
+
+func TestReadFileContentBytes(t *testing.T) {
+	var mockFS fileSystem = mockFS{}
+	result := readFileContentBytes(mockFS, "example.pu")
+	if bytes.Compare(result, []byte(`Test String`)) != 0 {
 		t.Fatal()
 	}
 }
