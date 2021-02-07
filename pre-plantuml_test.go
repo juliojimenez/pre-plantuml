@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"testing"
-	"fmt"
 )
 
 // TestFindFiles Test
