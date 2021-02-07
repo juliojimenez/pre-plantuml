@@ -32,7 +32,7 @@ func TestReadFileContentBytes(t *testing.T) {
 
 func TestHexEncodedURL(t *testing.T) {
 	result := hexEncodedURL([]byte(`Hello World!`))
-	if result != "http://www.plantuml.com/plantuml/png/~h48656c6c6f20576f726c6421---" {
+	if result != "http://www.plantuml.com/plantuml/png/~h48656c6c6f20576f726c6421" {
 		t.Fatal()
 	}
 }
