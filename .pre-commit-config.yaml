@@ -1,5 +1,5 @@
 repos:
 - repo: https://github.com/juliojimenez/pre-plantuml
-  rev: v0.0.31
+  rev: v0.0.32
   hooks:
   - id: pre-plantuml

@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"testing"
+	"fmt"
 )
 
 // TestFindFiles Test
@@ -28,4 +29,9 @@ func TestReadFileContentBytes(t *testing.T) {
 	if bytes.Compare(result, []byte(`Test String`)) != 0 {
 		t.Fatal()
 	}
+}
+
+func TestHexEncodedURL(t *testing.T) {
+	result := hexEncodedURL([]byte(`Hello World!`))
+	fmt.Printf(result)
 }
