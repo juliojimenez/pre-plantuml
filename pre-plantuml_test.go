@@ -36,3 +36,11 @@ func TestHexEncodedURL(t *testing.T) {
 		t.Fatal()
 	}
 }
+
+func TestReplaceLineInFile(t *testing.T) {
+	var mockFS fileSystem = mockFS{}
+	result := replaceLineInFile(mockFS, "README.md", "\\!\\[example.pu\\]\\(.*\\)", "![example.pu](https://example.com)")
+	if result != true {
+		t.Fatal()
+	}
+}
