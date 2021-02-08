@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
