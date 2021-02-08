@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
@@ -50,7 +49,7 @@ func hexEncodedURL(content []byte) string {
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/~h%s", encodedStr)
 }
 
-func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) {
+func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) bool {
 	libRegEx, e := regexp.Compile(searchString)
 	if e != nil {
 		log.Fatal(e)
@@ -65,11 +64,12 @@ func replaceLineInFile(fs fileSystem, filePath string, searchString string, repl
 		}
 	}
 	output := strings.Join(lines, "\n")
-	err := ioutil.WriteFile(filePath, []byte(output), 0644)
+	err := fs.WriteFile(filePath, []byte(output), 0644)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Println("Updated image tags in ", filePath)
+	return true
 }
 
 func main() {
