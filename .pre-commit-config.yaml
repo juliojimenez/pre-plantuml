@@ -3,3 +3,4 @@ repos:
   rev: v0.0.32
   hooks:
   - id: pre-plantuml
+    args: [deflate]

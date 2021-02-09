@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"testing"
 )
 
@@ -43,4 +44,12 @@ func TestReplaceLineInFile(t *testing.T) {
 	if result != true {
 		t.Fatal()
 	}
+}
+
+func TestDeflateEncodedURL(t *testing.T) {
+	result := deflateEncodedURL([]byte(`Hello World!`))
+	fmt.Printf(result)
+	// if result != "http://www.plantuml.com/plantuml/png/~h48656c6c6f20576f726c6421" {
+	// 	t.Fatal()
+	// }
 }

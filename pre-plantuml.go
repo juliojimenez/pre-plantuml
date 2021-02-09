@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"compress/flate"
 	"encoding/hex"
 	"fmt"
 	"log"
@@ -49,6 +51,14 @@ func hexEncodedURL(content []byte) string {
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/~h%s", encodedStr)
 }
 
+func deflateEncodedURL(content []byte) string {
+	var b bytes.Buffer
+	compressor, _ := flate.NewWriter(&b, flate.DefaultCompression)
+	compressor.Write(content)
+	compressor.Close()
+	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", b.String())
+}
+
 func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) bool {
 	libRegEx, e := regexp.Compile(searchString)
 	if e != nil {
@@ -73,6 +83,7 @@ func replaceLineInFile(fs fileSystem, filePath string, searchString string, repl
 }
 
 func main() {
+	arguments := os.Args[1:]
 	var fs fileSystem = osFS{}
 	diagramFiles, e := findFiles(fs, ".*\\.(pu|puml|plantuml|iuml|wsd)")
 	if e != nil {
@@ -80,8 +91,14 @@ func main() {
 	}
 	for _, diagramFile := range diagramFiles {
 		diagramContent := readFileContentBytes(fs, diagramFile)
-		fmt.Println("Hex Encoding Diagram for: ", diagramFile)
-		url := hexEncodedURL(diagramContent)
+		var url string
+		if arguments[0] == "deflate" {
+			fmt.Println("Deflate Encoding Diagram for: ", diagramFile)
+			url = deflateEncodedURL(diagramContent)
+		} else {
+			fmt.Println("Hex Encoding Diagram for: ", diagramFile)
+			url = hexEncodedURL(diagramContent)
+		}
 		markdownFiles, e := findFiles(fs, ".*\\.md")
 		if e != nil {
 			log.Fatal(e)
