@@ -1,14 +1,14 @@
 package main
 
 import (
-	"bytes"
-	"compress/flate"
 	"encoding/hex"
 	"fmt"
 	"log"
 	"os"
 	"regexp"
 	"strings"
+
+	"github.com/4kills/go-libdeflate"
 )
 
 func findFiles(fs fileSystem, re string) ([]string, error) {
@@ -52,11 +52,16 @@ func hexEncodedURL(content []byte) string {
 }
 
 func deflateEncodedURL(content []byte) string {
-	var b bytes.Buffer
-	compressor, _ := flate.NewWriter(&b, flate.DefaultCompression)
-	compressor.Write(content)
+	compressor, error := libdeflate.NewCompressor()
+	if error != nil {
+		log.Fatal(error)
+	}
+	_, comp, err := compressor.Compress(content, nil, libdeflate.MinCompressionLevel)
+	if err != nil {
+		log.Fatal(err)
+	}
 	compressor.Close()
-	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", b.String())
+	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", string(comp))
 }
 
 func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) bool {
