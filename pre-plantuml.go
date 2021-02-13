@@ -52,15 +52,7 @@ func hexEncodedURL(content []byte) string {
 }
 
 func deflateEncodedURL(content []byte) string {
-	compressor, error := libdeflate.NewCompressor()
-	if error != nil {
-		log.Fatal(error)
-	}
-	_, comp, err := compressor.Compress(content, nil, libdeflate.MinCompressionLevel)
-	if err != nil {
-		log.Fatal(err)
-	}
-	compressor.Close()
+	comp := deflateCompress(content)
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", string(comp))
 }
 
