@@ -8,7 +8,6 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/4kills/go-libdeflate"
 )
 
 func findFiles(fs fileSystem, re string) ([]string, error) {
