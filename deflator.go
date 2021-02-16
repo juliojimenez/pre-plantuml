@@ -21,6 +21,22 @@ func deflateCompress(content []byte) []byte {
 	return dataBuffer.Bytes()
 }
 
+func mapByteToBase64() []byte {
+	base64Map := make([]rune, 64)
+	i := 0
+	for rLower := 'a'; rLower <= 'z'; rLower++ {
+		base64Map = append(base64Map, rLower)
+		i++
+	}
+	for rUpper := 'A'; rUpper <= 'Z'; rUpper++ {
+		base64Map = append(base64Map, rUpper)
+		i++
+	}
+	base64Map = append(base64Map, '+')
+	base64Map = append(base64Map, '/')
+	return []byte(string(base64Map))
+}
+
 // https://github.com/plantuml/plantuml/blob/master/src/net/sourceforge/plantuml/code/Base64Coder.java
 func deflateBase64ishEncode(in []byte, iOff int, iLen int) []byte {
 	oDataLen := (iLen * 4 + 2) / 3
@@ -50,6 +66,8 @@ func deflateBase64ishEncode(in []byte, iOff int, iLen int) []byte {
 		o1 := ((i0 & 3) << 4) | (i1 >> 4)
 		o2 := ((i1 & 0xf) << 2) | (i2 >> 6)
 		o3 := i2 & 0x3f
+		map1 := mapByteToBase64()
+		
 		
 	}
 	return out
