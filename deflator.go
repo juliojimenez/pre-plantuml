@@ -67,8 +67,22 @@ func deflateBase64ishEncode(in []byte, iOff int, iLen int) []byte {
 		o2 := ((i1 & 0xf) << 2) | (i2 >> 6)
 		o3 := i2 & 0x3f
 		map1 := mapByteToBase64()
-		
-		
+		op++
+		out[op] = map1[o0]
+		op++
+		out[op] = map1[o1]
+		if op < oDataLen {
+			out[op] = map1[o2]
+		} else {
+			out[op] = byte('=')
+		}
+		op++
+		if op < oDataLen {
+			out[op] = map1[o3]
+		} else {
+			out[op] = byte('=')
+		}
+		op++
 	}
 	return out
 	fmt.Println(oDataLen)
