@@ -1,23 +1,20 @@
 package main
 
 import (
-	"bytes"
-	"compress/flate"
 	"log"
+	"github.com/4kills/go-libdeflate"
 )
 
 func deflateCompress(content []byte) []byte {
-	var dataBuffer bytes.Buffer
-	flateWrite, err := flate.NewWriter(&dataBuffer, flate.DefaultCompression)
+	c, err := libdeflate.NewCompressorLevel(libdeflate.MaxCompressionLevel)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal()
 	}
-	_, error := flateWrite.Write(content)
+	_, comp, error := c.Compress(content, nil, libdeflate.ModeDEFLATE)
 	if error != nil {
-		log.Fatal(error)
+
 	}
-	flateWrite.Close()
-	return dataBuffer.Bytes()
+	return comp
 }
 
 func mapByteToBase64() []byte {
@@ -44,7 +41,7 @@ func deflateBase64ishEncode(in []byte, iOff int, iLen int) []byte {
 	ip := iOff
 	iEnd := iOff + iLen
 	op := 0
-	for ip < iEnd {
+	for ip < iEnd - 1 {
 		ip++
 		i0 := in[ip] & 0xff
 		ip++
