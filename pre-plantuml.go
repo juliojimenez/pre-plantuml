@@ -52,8 +52,8 @@ func hexEncodedURL(content []byte) string {
 
 func deflateEncodedURL(content []byte) string {
 	comp := deflateCompress(content)
-	deflateBase64ishEncode(comp, 0, len(comp))
-	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", string(comp))
+	encoded := deflateBase64ishEncode(comp, 0, len(comp))
+	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", string(encoded))
 }
 
 func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) bool {

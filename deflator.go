@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"compress/flate"
-	"fmt"
 	"log"
 )
 
@@ -85,6 +84,4 @@ func deflateBase64ishEncode(in []byte, iOff int, iLen int) []byte {
 		op++
 	}
 	return out
-	fmt.Println(oDataLen)
-	fmt.Println(oLen)
 }
