@@ -58,9 +58,9 @@ func deflateBase64ishEncode(in []byte, iOff int, iLen int) []byte {
 		} else {
 			i2 = 0
 		}
-		o0 := i0 >> 2
-		o1 := ((i0 & 3) << 4) | (i1 >> 4)
-		o2 := ((i1 & 0xf) << 2) | (i2 >> 6)
+		o0 := uint32(i0) >> 2
+		o1 := ((i0 & 3) << 4) | byte(uint32(i1) >> 4)
+		o2 := ((i1 & 0xf) << 2) | byte(uint32(i2) >> 6)
 		o3 := i2 & 0x3f
 		map1 := mapByteToBase64()
 		op++
