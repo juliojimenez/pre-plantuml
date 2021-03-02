@@ -20,6 +20,6 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             This release has the following changes:
-            - replaceLineInFile  Test
+            - Deflate Compression Support
           draft: false
           prerelease: false
