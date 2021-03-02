@@ -47,9 +47,9 @@ func TestReplaceLineInFile(t *testing.T) {
 }
 
 func TestDeflateEncodedURL(t *testing.T) {
-	result := deflateEncodedURL([]byte(`@startuml\nAlice -> Bob: Authentication Request\nBob --> Alice: Authentication Response\nAlice -> Bob: Another authentication Request\nAlice <-- Bob: Another authentication Response\n@enduml`))
+	result := deflateEncodedURL([]byte("@startuml\nAlice -> Bob: Authentication Request\nBob --> Alice: Authentication Response\nAlice -> Bob: Another authentication Request\nAlice <-- Bob: Another authentication Response\n@enduml"))
 	fmt.Printf(result)
-	// if result != "http://www.plantuml.com/plantuml/png/~h48656c6c6f20576f726c6421" {
-	// 	t.Fatal()
-	// }
+	if result != "http://www.plantuml.com/plantuml/png/1C3HZSCW40JGVwgO1cZ0Ebd19RW3u4PY9RARcA7_lDTIVRJVCvLfdSWdhcW7ojQWotgLXUFcTtCfNT6GyuaohVD0sHfqMQ-oSDnSd_35LAPr8f-ueXqe7XfyKBS6NTQhB1mtlvjBgKphn5_EkA8TA1uQV52t1btMgomSDzSdV36zwF_xFNy0003__m400F__" {
+		t.Fatal()
+	}
 }
