@@ -53,3 +53,12 @@ func TestDeflateEncodedURL(t *testing.T) {
 		t.Fatal()
 	}
 }
+
+func TestBrotliEncodedURL(t *testing.T) {
+	var fs fileSystem = osFS{}
+	result := brotliEncodedURL(readFileContentBytes(fs, "diagrams/src/test.pu"))
+	fmt.Printf(" %q ", result)
+	if result != "http://www.plantuml.com/plantuml/png/6xe004JdrYdfeH2ASmv8JPNWXbe4P7BWKiaNK9PW6bXBKybjR8ZZcY6vGmIlF44QUpgumTueq4mSVy_JEEgGP6-K3mnqIlj9FpePSWCjq8q5byfCNL34xyeJ10==" {
+		t.Fatal()
+	}
+}
