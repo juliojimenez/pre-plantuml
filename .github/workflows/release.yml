@@ -64,7 +64,7 @@ jobs:
         if: matrix.arch == 'amd64'
         run: |
           echo "${{ matrix.os }} ${{ matrix.arch }}"
-          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/pre-plantuml
+          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/juliojimenez/pre-plantuml
         env:
           FILE: build/pre-plantuml-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
 
@@ -72,7 +72,7 @@ jobs:
         if: matrix.arch == 'arm64' && matrix.os == 'linux'
         run: |
           echo "${{ matrix.os }} ${{ matrix.arch }}"
-          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/pre-plantuml
+          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/juliojimenez/pre-plantuml
         env:
           FILE: build/pre-plantuml-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
 
@@ -80,7 +80,7 @@ jobs:
         if: matrix.arch == 'arm' && (matrix.os == 'freebsd' || matrix.os == 'netbsd' || matrix.os == 'openbsd')
         run: |
           echo "${{ matrix.os }} ${{ matrix.arch }}"
-          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/devops-kung-fu/pre-plantuml
+          env GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o $FILE github.com/juliojimenez/pre-plantuml
         env:
           FILE: build/pre-plantuml-${{ steps.get_version.outputs.VERSION }}-${{ matrix.os }}-${{ matrix.arch }}
 
