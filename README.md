@@ -1,8 +1,28 @@
-# pre-plantuml
+![Gardener](img/gardener128x128.png)
+
+# Gardener
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/gardener)](https://goreportcard.com/report/github.com/devops-kung-fu/gardenre) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/gardener)
 
 A pre-commit hook that renders PlantUML diagram source in Markdown image tags. 
 
-## Install pre-commit
+## Usage with Hookz
+
+Gardner is best used with [Hookz](https://github.com/devops-kung-fu/hookz). Follow the instructions to install Hookz and then configure your ```.hookz.yaml``` file to add the following action:
+
+__NOTE:__ Ensure that for the ```url``` value you select the appropriate Gardener release for your platform and architecture.
+
+``` yaml
+version: 2.1.1
+hooks:
+  - type: pre-commit
+    actions:
+      - name: "Generate Images for PlantUML"
+        url: https://github.com/devops-kung-fu/gardener/releases/download/v0.1.4/pre-plantuml-0.1.4-linux-amd64
+        args: ["deflate"]
+```
+
+## Using with pre-commit
 
 If this is your first time using pre-commit, start [here](https://pre-commit.com/#install)
 
@@ -12,7 +32,7 @@ At the root of your repo, create `.pre-commit-config.yaml` and add the following
 
 ```yaml
 repos:
-- repo: https://github.com/juliojimenez/pre-plantuml
+- repo: https://github.com/devops-kung-fu/gardener
   rev: v0.0.26
   hooks:
   - id: pre-plantuml
@@ -83,3 +103,7 @@ Here are some examples from processed from [diagrams/src/example1.pu](diagrams/s
 ### Markdown
 
 - .md
+
+## Credits
+
+A big thank-you to our friends at [Freepik](https://www.freepik.com) for the Gardener logo.
