@@ -53,3 +53,9 @@ func TestDeflateEncodedURL(t *testing.T) {
 		t.Fatal()
 	}
 }
+
+func TestBrotliEncodedURL(t *testing.T) {
+	var fs fileSystem = osFS{}
+	result := brotliEncodedURL(readFileContentBytes(fs, "diagrams/src/test.pu"))
+	fmt.Printf(" %s ", result)
+}

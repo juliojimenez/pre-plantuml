@@ -55,6 +55,12 @@ func deflateEncodedURL(content []byte) string {
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", string(encoded))
 }
 
+func brotliEncodedURL(content []byte) string {
+	comp := brotliCompress(content)
+	encoded := plantUMLBase64(comp)
+	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/0%s", string(encoded))
+}
+
 func replaceLineInFile(fs fileSystem, filePath string, searchString string, replaceString string) bool {
 	libRegEx, e := regexp.Compile(searchString)
 	if e != nil {
