@@ -1,0 +1,107 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.2",
+  "serialNumber": "urn:uuid:2a46f9ca-b70c-4962-bc45-02fccf13ffa9",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2021-06-16T11:32:38-04:00",
+    "tools": [
+      {
+        "vendor": "CycloneDX",
+        "name": "cyclonedx-gomod",
+        "version": "v0.8.1",
+        "hashes": [
+          {
+            "alg": "MD5",
+            "content": "9805d3c353474f2c88ff04ceb428c455"
+          },
+          {
+            "alg": "SHA-1",
+            "content": "62234fe9f06680394b8d9d9fc9acd0b1fe9a7081"
+          },
+          {
+            "alg": "SHA-256",
+            "content": "5f459cca9a693579b7db7e07c5581a1c353292ed76a90657796beb5ef8cddcf7"
+          },
+          {
+            "alg": "SHA-512",
+            "content": "ab31d76565ae55c0d9f9a49712a201437cc34746eacf037f7bff8ebfa3d777b1f3ef0ac112b9e4047fa801b59c2d4fe218e5ec3c33e36062b3bb44441a7b04ef"
+          }
+        ]
+      }
+    ],
+    "component": {
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210608101603-4679d73780a1",
+      "type": "application",
+      "name": "github.com/devops-kung-fu/gardener",
+      "version": "v0.0.0-20210608101603-4679d73780a1",
+      "purl": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210608101603-4679d73780a1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/devops-kung-fu/gardener",
+          "type": "vcs"
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "pkg:golang/github.com/andybalholm/brotli@v1.0.3",
+      "type": "library",
+      "name": "github.com/andybalholm/brotli",
+      "version": "v1.0.3",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "7e9730fabd4dd61d0fa1cd45fe91db5b8d1c526fe530442c959b429014345273"
+        }
+      ],
+      "purl": "pkg:golang/github.com/andybalholm/brotli@v1.0.3",
+      "externalReferences": [
+        {
+          "url": "https://github.com/andybalholm/brotli",
+          "type": "vcs"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/std@1.16.2",
+      "type": "library",
+      "name": "std",
+      "version": "1.16.2",
+      "description": "The Go standard library",
+      "scope": "required",
+      "purl": "pkg:golang/std@1.16.2",
+      "externalReferences": [
+        {
+          "url": "https://golang.org/pkg/",
+          "type": "documentation"
+        },
+        {
+          "url": "https://go.googlesource.com/go",
+          "type": "vcs"
+        },
+        {
+          "url": "https://golang.org/",
+          "type": "website"
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "pkg:golang/github.com/andybalholm/brotli@v1.0.3"
+    },
+    {
+      "ref": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210608101603-4679d73780a1",
+      "dependsOn": [
+        "pkg:golang/github.com/andybalholm/brotli@v1.0.3",
+        "pkg:golang/std@1.16.2"
+      ]
+    },
+    {
+      "ref": "pkg:golang/std@1.16.2"
+    }
+  ]
+}
