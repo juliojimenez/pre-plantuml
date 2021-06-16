@@ -24,7 +24,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             This release has the following changes:
-            - Binary builds
+            - Rename from pre-plantuml to gardener
           draft: false
           prerelease: false
         
