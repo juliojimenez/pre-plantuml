@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:76921b7b-3904-401a-a081-88e7b1956e33",
+  "serialNumber": "urn:uuid:4c41f65b-6771-4699-9e72-fa4263f5df2d",
   "version": 1,
   "metadata": {
-    "timestamp": "2021-06-16T11:37:53-04:00",
+    "timestamp": "2021-06-16T11:40:29-04:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210616113229-d2a0feb0daed",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210616113745-a9b558d60311",
       "type": "application",
       "name": "github.com/devops-kung-fu/gardener",
-      "version": "v0.0.0-20210616113229-d2a0feb0daed",
-      "purl": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210616113229-d2a0feb0daed",
+      "version": "v0.0.0-20210616113745-a9b558d60311",
+      "purl": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210616113745-a9b558d60311",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/gardener",
@@ -94,7 +94,7 @@
       "ref": "pkg:golang/github.com/andybalholm/brotli@v1.0.3"
     },
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210616113229-d2a0feb0daed",
+      "ref": "pkg:golang/github.com/devops-kung-fu/gardener@v0.0.0-20210616113745-a9b558d60311",
       "dependsOn": [
         "pkg:golang/github.com/andybalholm/brotli@v1.0.3",
         "pkg:golang/std@1.16.2"
