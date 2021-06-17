@@ -50,13 +50,19 @@ func hexEncodedURL(content []byte) string {
 }
 
 func deflateEncodedURL(content []byte) string {
-	comp := deflateCompress(content)
+	comp, err := deflateCompress(content)
+	if err != nil {
+		log.Fatal()
+	}
 	encoded := plantUMLBase64(comp)
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/%s", string(encoded))
 }
 
 func brotliEncodedURL(content []byte) string {
-	comp := brotliCompress(content)
+	comp, err := brotliCompress(content)
+	if err != nil {
+		log.Fatal()
+	}
 	encoded := plantUMLBase64(comp)
 	return fmt.Sprintf("http://www.plantuml.com/plantuml/png/0%s", string(encoded))
 }

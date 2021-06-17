@@ -1,6 +1,6 @@
 repos:
-- repo: https://github.com/juliojimenez/pre-plantuml
+- repo: https://github.com/devops-kung-fu/gardener
   rev: v0.1.0
   hooks:
-  - id: pre-plantuml
+  - id: gardener
     args: [deflate]

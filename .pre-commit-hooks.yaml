@@ -1,6 +1,6 @@
-- id: pre-plantuml
+- id: gardener
   name: PlantUML Diagram Generation Pre-Commit
   description: Generates SVGs of PlantUML diagrams found in path specified in arguments.
-  entry: pre-plantuml
+  entry: gardener
   language: golang
   types: [text]
